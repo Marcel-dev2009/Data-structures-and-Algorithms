@@ -1,0 +1,10 @@
+Our objectives are as follows
+In C programming language
+1: Create a 2x2 matrix and use a loop to print out all entries of the matrix
+2: Make the matrix dynamic by allowing users to key in entries via the stdin
+3: Accept a entries from std in and print our the determinant
+4: Implement a 3x3 and 4x4 matrix and loop to print all of it's entries
+5: Make the matrix dynamic by allowing users to key in entries via stdin
+6: Build a terminal UI that allows users choose to work with a 3x3 matrix, 2x2 or 4x4 and if they choose one go ahead to allow them key in enteries and then hand them the determinant
+7: In any one they do allow them to create more matrix that allows for multiplication and other operations 
+8: FInd the nth of the fibonacci sequence using the matrix method.. 
