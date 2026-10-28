@@ -1,80 +1,77 @@
-# Data Structures & Algorithms (DSA) in C
+# Data Structures & Algorithms (DSA) in C: Matrix Foundations
 
-A practical repository focused on low-level Data Structures and Algorithms implementations in C. This project emphasizes manual memory management, pointer arithmetic, and cache-friendly matrix operations.
+A step-by-step learning journey focused on mastering matrices, dynamic input handling, determinant calculations, terminal UIs, and matrix exponentiation in C.
 
 ---
 
-## 📂 Repository Architecture
+## 📂 Repository Structure
 
 ```text
 .
 ├── matrices/
-│   ├── memory_layouts.c          # Row-major vs. 1D dynamic allocation
-│   ├── matrix_traversals.c       # Boundary scanning, row-wise vs. col-wise iteration
-│   ├── transformations.c        # In-place transpositions and rotations
-│   └── grid_dp.c                # 2D state-space traversal and dynamic programming
-├── graphs/                      # [Upcoming] Adjacency matrices & graph algorithms
+│   ├── 01_2x2_basic.c          # Hardcoded 2x2 matrix allocation and traversal
+│   ├── 02_2x2_stdin.c          # Dynamic 2x2 input via stdin
+│   ├── 03_2x2_determinant.c    # 2x2 Determinant calculation
+│   ├── 04_3x3_4x4_basics.c     # 3x3 and 4x4 matrix print loops
+│   ├── 05_3x3_4x4_stdin.c      # Dynamic 3x3 and 4x4 input
+│   ├── 06_matrix_tui.c         # Interactive Terminal UI for determinants
+│   ├── 07_matrix_operations.c # Multi-matrix arithmetic & matrix multiplication
+│   └── 08_fibonacci_matrix.c   # N-th Fibonacci via Matrix Exponentiation
+├── graphs/ graphs/ [Upcoming] Adjacency matrices & graph algorithms
 └── README.md
 ```
 
 ---
 
-## 🧮 Matrices in C (Core Concepts)
+## 🎯 Step-by-Step Learning Roadmap
 
-In C, a matrix is represented in memory as contiguous blocks of memory, either allocated on the stack (e.g., `int matrix[M][N]`) or dynamically allocated on the heap.
+Use this progress checklist to guide your self-implemented solution code in C:
 
-### 1. Memory Layouts & Pointer Arithmetic
-- **Row-Major Order:** C stores multidimensional arrays in row-major order. Contiguous memory locations hold elements of a row sequentially.
-- **1D Flat Array Mapping:** For cache efficiency and flexible dimensions on the heap, a 2D matrix of size $M \times N$ can be mapped onto a single 1D pointer (`int *matrix`):
-  $$\text{Index}(r, c) = r \times N + c$$
-- **Array of Pointers:** Allocated as `int **matrix`, which allows $O(1)$ sub-scripting (`matrix[r][c]`), but may incur cache misses due to fragmented non-contiguous memory allocations.
+- [ ] **Objective 1: Static $2 \times 2$ Matrix**
+  - Allocate a $2 \times 2$ integer array (`int matrix[2][2]`).
+  - Use nested `for` loops to print out all entries in standard grid layout.
 
-### 2. Algorithmic Applications
-- **Linear Algebra:** Foundations for transformations, system solving, and computer graphics.
-- **Graph Representation:** Adjacency matrices ($V \times V$ grid) where cell `[u][v]` indicates an edge between node $u$ and node $v$.
-- **Grid-Based Dynamic Programming:** Optimizing paths across state spaces using overlapping subproblems mapped to 2D coordinates.
+- [ ] **Objective 2: Interactive $2 \times 2$ Input**
+  - Accept $2 \times 2$ matrix elements dynamically from the user via standard input (`scanf`).
+  - Print the user's matrix back to the console to verify input.
 
----
+- [ ] **Objective 3: $2 \times 2$ Determinant**
+  - Read $2 \times 2$ entries from `stdin`.
+  - Calculate and output the determinant using the formula: 
+    $$\det(A) = ad - bc$$
 
-## 🎯 Implementation Roadmap (To Solve)
+- [ ] **Objective 4: Scaled Sizes ($3 \times 3$ & $4 \times 4$)**
+  - Declare hardcoded $3 \times 3$ and $4 \times 4$ matrices.
+  - Write modular loops/functions to print all entries cleanly formatted.
 
-Use this checklist to track your self-guided C implementation progress:
+- [ ] **Objective 5: Dynamic Input for $3 \times 3$ & $4 \times 4$**
+  - Prompt the user to enter entries row-by-row for $3 \times 3$ and $4 \times 4$ grids.
+  - Display the populated matrices.
 
-### Phase 1: Allocations & Basic Traversals
-- [ ] Implement contiguous 1D heap allocation (`malloc`/`calloc`) for an $M \times N$ matrix.
-- [ ] Write a row-major vs. column-major traversal loop and compare performance.
-- [ ] Implement a boundary traversal scanner (Spiral Order) using pointer/index bounds (`top`, `bottom`, `left`, `right`).
+- [ ] **Objective 6: Interactive Terminal UI**
+  - Build a CLI menu allowing users to choose matrix dimensions ($2 \times 2$, $3 \times 3$, or $4 \times 4$).
+  - Prompt for row/column input based on selection.
+  - Calculate and display the determinant (using Laplace expansion or cofactors for higher orders).
 
-### Phase 2: In-Place Transformations
-- [ ] Transpose an $N \times N$ square matrix in-place by swapping values across the main diagonal ($[i][j] \leftrightarrow [j][i]$).
-- [ ] Rotate an $N \times N$ matrix by $90^\circ$ clockwise using only $O(1)$ extra memory.
+- [ ] **Objective 7: Multi-Matrix Operations**
+  - Expand the UI to create a secondary matrix.
+  - Implement matrix addition, subtraction, and matrix multiplication ($A \times B$).
 
-### Phase 3: Matrix Algorithms & Graphs
-- [ ] Binary search on a row-wise and column-wise sorted 2D grid ($O(M + N)$ time complexity).
-- [ ] Graph traversal (BFS/DFS) on an Adjacency Matrix.
-- [ ] Grid pathfinding using dynamic programming (e.g., Minimum Path Sum).
-
----
-
-## ⏱️ Time & Space Complexity Target Reference
-
-| Matrix Pattern / Problem | Target Time Complexity | Target Auxiliary Space | C Implementation Notes |
-| :--- | :--- | :--- | :--- |
-| **Row/Col Traversal** | $O(M \times N)$ | $O(1)$ | Row-first loops leverage CPU cache prefetching |
-| **In-Place Transpose** | $O(N^2)$ | $O(1)$ | Swap elements where $i < j$ |
-| **$90^\circ$ Clockwise Rotation** | $O(N^2)$ | $O(1)$ | Combine transpose with row reflection |
-| **Sorted Grid Search** | $O(M + N)$ | $O(1)$ | Start scanning from top-right or bottom-left corner |
+- [ ] **Objective 8: $N^{\text{th}}$ Fibonacci via Matrix Exponentiation**
+  - Implement $O(\log n)$ matrix exponentiation using the transformation matrix:
+    $$\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}$$
+  - Compute the $n^{\text{th}}$ Fibonacci number for large values of $n$.
 
 ---
 
 ## 🛠️ Compilation & Execution
 
-Build and run your implementation files using `gcc` or `clang` with strict flags enabled:
+Build your C programs locally using `gcc` or `clang`:
 
 ```bash
-# Compile individual C files with wall warnings enabled
-gcc -Wall -Wextra -std=c11 matrices/memory_layouts.c -o memory_layouts
+# Compile Objective 1
+gcc -Wall -Wextra -std=c11 matrices/01_2x2_basic.c -o 01_2x2_basic
 
 # Run binary
-./memory_layouts
+./01_2x2_basic
 ```
